@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ABTRS.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <x:String x:Key="iconCheck">&#xf058;</x:String>
+            <x:String x:Key="iconCross">&#xf057;</x:String>
+            <x:String x:Key="iconLogOut">&#xf2f5;</x:String>
+
+            <Color x:Key="errorBackgroundColor">#fddfdf</Color>
+            <Color x:Key="errorTextColor">#d9534f</Color>
+
+            <Color x:Key="succesBackgroundColor">#ceecce</Color>
+            <Color x:Key="succesTextColor">#5cb85c</Color>
+
+            <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+                <Setter Property="Padding" Value="15"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:zxing="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+             x:Class="ABTRS.ScanPage"
+             Padding="0">
+    <ContentPage.Content>
+        <Grid VerticalOptions="CenterAndExpand"
+              HorizontalOptions="CenterAndExpand">
+            <zxing:ZXingScannerView x:Name="scanView"
+                                        OnScanResult="scanView_OnScanResult"
+                                        IsScanning="True"
+                                        VerticalOptions="CenterAndExpand"
+                                        HorizontalOptions="CenterAndExpand"/>
+            <zxing:ZXingDefaultOverlay TopText="Scan de QR-code van het ticket"/>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

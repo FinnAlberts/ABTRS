@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ABTRS.DetailsPage"
+             Padding="0">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout x:Name="iconStackLayout" HorizontalOptions="FillAndExpand">
+                <Label x:Name="iconLabel" FontSize="80" FontFamily="FA-S" HorizontalOptions="CenterAndExpand" Padding="5"/>
+            </StackLayout>
+
+            <StackLayout Padding="15, 0">
+                <Label x:Name="clientNameLabel" FontSize="30" FontAttributes="Bold"/>
+                <Label x:Name="orderIdLabel" FontSize="15"/>
+                <Label x:Name="showLabel" FontSize="18"/>
+                <Label x:Name="showDateWarningLabel" Text="Let op! Deze voorstelling vindt plaats op een andere datum dan vandaag." FontSize="18" TextColor="{StaticResource errorTextColor}" IsVisible="false"/>
+                <ListView x:Name="seatsListView">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding}" IsEnabled="False"/>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Label x:Name="errorLabel" FontSize="18" TextColor="{StaticResource errorTextColor}"/>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

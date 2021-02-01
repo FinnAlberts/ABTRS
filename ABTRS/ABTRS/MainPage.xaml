@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ABTRS.MainPage"
+            xmlns:local="clr-namespace:ABTRS">
+
+    <local:ScanPage Title="QR-scan"/>
+    <local:ManualInputPage Title="Handmatig"/>
+
+    <TabbedPage.ToolbarItems>
+        <ToolbarItem x:Name="logOutToolbarItem" Clicked="logOutToolbarItem_Clicked">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource FontFamily="FA-S" Glyph="{StaticResource iconLogOut}"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </TabbedPage.ToolbarItems>
+</TabbedPage>

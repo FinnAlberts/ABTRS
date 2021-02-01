@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ABTRS.LoginPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Log in" FontSize="30"/>
+            <Entry x:Name="apiLocationEntry" Placeholder="API-locatie..." Keyboard="Url"/>
+            <Entry x:Name="usernameEntry" Placeholder="Gebruikersnaam..."/>
+            <Entry x:Name="passwordEntry" Placeholder="Wachtwoord..." IsPassword="True"/>
+            <Button x:Name="loginButton" Text="Log in" Clicked="loginButton_Clicked"/>
+            <ActivityIndicator x:Name="activityIndicator" HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
