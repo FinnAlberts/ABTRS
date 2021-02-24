@@ -37,40 +37,48 @@ namespace ABTRS
             username = usernameEntry.Text;
             password = passwordEntry.Text;
 
-            if (!String.IsNullOrEmpty(apiLocation) && !String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password))
+            if (Connectivity.NetworkAccess == NetworkAccess.Internet)
             {
-                Preferences.Set("api", apiLocation);
-                Preferences.Set("username", username);
-
-                // Check connection
-                Uri uri = new Uri(apiLocation + "?data=check_connection&username=" + username + "&password=" + password);
-
-                HttpClient myClient = new HttpClient();
-
-                var response = await myClient.GetAsync(uri);
-
-                string apiResponse = "";
-                if (response.IsSuccessStatusCode)
+                if (!String.IsNullOrEmpty(apiLocation) && !String.IsNullOrEmpty(username) && !String.IsNullOrEmpty(password))
                 {
-                    apiResponse = await response.Content.ReadAsStringAsync();
+                    Preferences.Set("api", apiLocation);
+                    Preferences.Set("username", username);
+
+                    // Check connection
+                    Uri uri = new Uri(apiLocation + "?data=check_connection&username=" + username + "&password=" + password);
+
+                    HttpClient myClient = new HttpClient();
+
+                    var response = await myClient.GetAsync(uri);
+
+                    string apiResponse = "";
+                    if (response.IsSuccessStatusCode)
+                    {
+                        apiResponse = await response.Content.ReadAsStringAsync();
+                    }
+
+                    if (apiResponse == "Connection OK")
+                    {
+                        await Navigation.PushAsync(new MainPage());
+                        activityIndicator.IsRunning = false;
+                    }
+                    else
+                    {
+                        await DisplayAlert("Fout", "Er kon geen verbinding worden gemaakt. Controleer de ingevoerde gegevens en probeer het opnieuw.", "Oke");
+                        activityIndicator.IsRunning = false;
+                    }
                 }
-
-                if (apiResponse == "Connection OK")
-                {
-                    await Navigation.PushAsync(new MainPage());
-                    activityIndicator.IsRunning = false;
-                } 
                 else
                 {
-                    await DisplayAlert("Fout", "Er kon geen verbinding worden gemaakt. Controleer de ingevoerde gegevens en probeer het opnieuw.", "Oke");
+                    await DisplayAlert("Fout", "Niet alle velden zijn ingevuld.", "Oke");
                     activityIndicator.IsRunning = false;
                 }
             }
             else
             {
-                await DisplayAlert("Fout", "Niet alle velden zijn ingevuld.", "Oke");
+                await DisplayAlert("Fout", "Er is op dit moment geen internetverbinding beschikbaar. Verbind met internet via WiFi of mobiele data en probeer het opnieuw.", "Oke");
                 activityIndicator.IsRunning = false;
             }
-        }
+        }  
     }
 }
