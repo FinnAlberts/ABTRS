@@ -44,17 +44,24 @@ namespace ABTRS
                     Preferences.Set("api", apiLocation);
                     Preferences.Set("username", username);
 
+                    string apiResponse = String.Empty;
                     // Check connection
-                    Uri uri = new Uri(apiLocation + "?data=check_connection&username=" + username + "&password=" + password);
-
-                    HttpClient myClient = new HttpClient();
-
-                    var response = await myClient.GetAsync(uri);
-
-                    string apiResponse = "";
-                    if (response.IsSuccessStatusCode)
+                    try
                     {
-                        apiResponse = await response.Content.ReadAsStringAsync();
+                        Uri uri = new Uri(apiLocation + "?data=check_connection&username=" + username + "&password=" + password);
+
+                        HttpClient myClient = new HttpClient();
+
+                        var response = await myClient.GetAsync(uri);
+
+                        if (response.IsSuccessStatusCode)
+                        {
+                            apiResponse = await response.Content.ReadAsStringAsync();
+                        }
+                    }
+                    catch
+                    {
+                        await DisplayAlert("Fout", "De API-locatie kon niet worden gevonden. Controleer de URL en probeer het opnieuw.", "Oke");
                     }
 
                     if (apiResponse == "Connection OK")
