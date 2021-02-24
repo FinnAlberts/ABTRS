@@ -59,7 +59,17 @@ namespace ABTRS
 
                     if (apiResponse == "Connection OK")
                     {
-                        await Navigation.PushAsync(new MainPage());
+                        // Check camera permission
+                        var hasPermission = await Permissions.RequestAsync<Permissions.Camera>();
+                        if (hasPermission == PermissionStatus.Granted)
+                        {
+                            await Navigation.PushAsync(new MainPage());
+                        } 
+                        else
+                        {
+                            await DisplayAlert("Fout", "U dient toestemming te geven om de camera te gebruiken om de app te gebruiken.", "Oke");
+                        }
+
                         activityIndicator.IsRunning = false;
                     }
                     else

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -32,7 +32,7 @@ namespace ABTRS
             focussed = false;
         }
 
-        private void scanView_OnScanResult(ZXing.Result result)
+        private async void scanView_OnScanResult(ZXing.Result result)
         {
             if (focussed)
             {
