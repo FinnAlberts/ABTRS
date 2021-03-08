@@ -28,6 +28,6 @@ namespace ABTRS.Model
 
         public string date_time_reservation { get; set; }
 
-        public int order_id { get; set; }
+        public long order_id { get; set; }
     }
 }
