@@ -15,6 +15,7 @@ namespace ABTRS
     {
         public static List<Seat> seats;
         public static List<Show> shows;
+        public static List<User> users;
 
         public MainPage()
         {
@@ -64,6 +65,19 @@ namespace ABTRS
                 string content = await response.Content.ReadAsStringAsync();
 
                 shows = JsonConvert.DeserializeObject<List<Show>>(content, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
+
+            }
+
+            uri = new Uri(apiLocation + "?data=users&username=" + username + "&password=" + password);
+
+            myClient = new HttpClient();
+
+            response = await myClient.GetAsync(uri);
+            if (response.IsSuccessStatusCode)
+            {
+                string content = await response.Content.ReadAsStringAsync();
+
+                users = JsonConvert.DeserializeObject<List<User>>(content, new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore });
 
             }
         }
