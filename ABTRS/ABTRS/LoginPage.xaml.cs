@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
@@ -48,9 +49,11 @@ namespace ABTRS
                     // Check connection
                     try
                     {
-                        Uri uri = new Uri(apiLocation + "?data=check_connection&username=" + username + "&password=" + password);
+                        Uri uri = new Uri(apiLocation + "?data=check_connection");
 
                         HttpClient myClient = new HttpClient();
+
+                        myClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", username + ":" + password);
 
                         var response = await myClient.GetAsync(uri);
 
@@ -81,7 +84,7 @@ namespace ABTRS
                     }
                     else
                     {
-                        await DisplayAlert("Fout", "Er kon geen verbinding worden gemaakt. Controleer de ingevoerde gegevens en probeer het opnieuw.", "Oke");
+                        await DisplayAlert("Fout", "Er kon geen verbinding worden gemaakt. Controleer de ingevoerde gegevens en probeer het opnieuw." + apiResponse, "Oke");
                         activityIndicator.IsRunning = false;
                     }
                 }

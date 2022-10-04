@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -42,9 +43,11 @@ namespace ABTRS
             string password = LoginPage.password;
             string apiLocation = LoginPage.apiLocation;
 
-            Uri uri = new Uri(apiLocation + "?data=seats&username=" + username + "&password=" + password);
+            Uri uri = new Uri(apiLocation + "?data=seats");
 
             HttpClient myClient = new HttpClient();
+
+            myClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", username + ":" + password);
 
             var response = await myClient.GetAsync(uri);
             if (response.IsSuccessStatusCode)
@@ -55,9 +58,11 @@ namespace ABTRS
                 
             }
 
-            uri = new Uri(apiLocation + "?data=shows&username=" + username + "&password=" + password);
+            uri = new Uri(apiLocation + "?data=shows");
 
             myClient = new HttpClient();
+
+            myClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", username + ":" + password);
 
             response = await myClient.GetAsync(uri);
             if (response.IsSuccessStatusCode)
@@ -68,9 +73,11 @@ namespace ABTRS
 
             }
 
-            uri = new Uri(apiLocation + "?data=users&username=" + username + "&password=" + password);
+            uri = new Uri(apiLocation + "?data=users");
 
             myClient = new HttpClient();
+
+            myClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", username + ":" + password);
 
             response = await myClient.GetAsync(uri);
             if (response.IsSuccessStatusCode)
